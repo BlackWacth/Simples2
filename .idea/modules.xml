@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AppShortcuts/AppShortcuts.iml" filepath="$PROJECT_DIR$/AppShortcuts/AppShortcuts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CalculationStep/CalculationStep.iml" filepath="$PROJECT_DIR$/CalculationStep/CalculationStep.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CustomDrawable/CustomDrawable.iml" filepath="$PROJECT_DIR$/CustomDrawable/CustomDrawable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MultiWindow/MultiWindow.iml" filepath="$PROJECT_DIR$/MultiWindow/MultiWindow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Simples2.iml" filepath="$PROJECT_DIR$/Simples2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SwitchView/SwitchView.iml" filepath="$PROJECT_DIR$/SwitchView/SwitchView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TaskAffinity/TaskAffinity.iml" filepath="$PROJECT_DIR$/TaskAffinity/TaskAffinity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TaskAffinity2/TaskAffinity2.iml" filepath="$PROJECT_DIR$/TaskAffinity2/TaskAffinity2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TaskAffinity3/TaskAffinity3.iml" filepath="$PROJECT_DIR$/TaskAffinity3/TaskAffinity3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Transition/Transition.iml" filepath="$PROJECT_DIR$/Transition/Transition.iml" />
+      <module fileurl="file://$PROJECT_DIR$/canvas/canvas.iml" filepath="$PROJECT_DIR$/canvas/canvas.iml" />
+    </modules>
+  </component>
+</project>

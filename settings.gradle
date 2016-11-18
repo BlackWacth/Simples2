@@ -1,0 +1,1 @@
+include ':SwitchView', ':canvas', ':CalculationStep', ':MultiWindow', ':TaskAffinity', ':TaskAffinity2', ':TaskAffinity3', ':AppShortcuts', ':CustomDrawable', ':Transition'

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="C:\Android\Android Studio\gradle\gradle-2.14.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/AppShortcuts" />
+            <option value="$PROJECT_DIR$/CalculationStep" />
+            <option value="$PROJECT_DIR$/CustomDrawable" />
+            <option value="$PROJECT_DIR$/MultiWindow" />
+            <option value="$PROJECT_DIR$/SwitchView" />
+            <option value="$PROJECT_DIR$/TaskAffinity" />
+            <option value="$PROJECT_DIR$/TaskAffinity2" />
+            <option value="$PROJECT_DIR$/TaskAffinity3" />
+            <option value="$PROJECT_DIR$/Transition" />
+            <option value="$PROJECT_DIR$/canvas" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

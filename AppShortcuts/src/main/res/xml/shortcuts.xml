@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:shortcutId="add_website"
+        android:icon="@drawable/add"
+        android:shortcutShortLabel="@string/add_new_website_short"
+        android:shortcutLongLabel="@string/add_new_website">
+
+        <intent
+            android:action="com.hua.appshortcuts.ADD_WEBSITE"
+            android:targetPackage="com.hua.appshortcuts"
+            android:targetClass="com.hua.appshortcuts.MainActivity"/>
+    </shortcut>
+    <!--
+    <shortcut
+        android:shortcutId="to_second_activity"
+        android:icon="@drawable/add"
+        android:shortcutShortLabel="@string/to_second_activity_short"
+        android:shortcutLongLabel="@string/to_second_activity">
+
+        <intent
+            android:action="android.intent.action.SECOND"
+            android:targetPackage="com.hua.appshortcuts"
+            android:targetClass="com.hua.appshortcuts.SecondActivity"/>
+    </shortcut>
+-->
+</shortcuts>

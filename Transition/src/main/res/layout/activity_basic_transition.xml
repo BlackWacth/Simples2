@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_basic_transition"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.bruce.transition.BasicTransitionActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+
+        <View
+            android:id="@+id/red_box"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="8dp"
+            android:background="#f00"
+            android:elevation="4dp"/>
+
+        <View
+            android:id="@+id/green_box"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="8dp"
+            android:layout_toEndOf="@id/red_box"
+            android:background="#0f0"
+            android:elevation="4dp"/>
+
+        <View
+            android:id="@+id/blue_box"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/red_box"
+            android:layout_margin="8dp"
+            android:background="#00f"
+            android:elevation="4dp"/>
+
+        <View
+            android:id="@+id/black_box"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/green_box"
+            android:layout_margin="8dp"
+            android:layout_toEndOf="@id/blue_box"
+            android:background="#000"
+            android:elevation="4dp"/>
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/transition_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp">
+
+        <RadioButton
+            android:id="@+id/transition_explode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Explode"/>
+
+        <RadioButton
+            android:id="@+id/transition_fade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="Fade"/>
+
+        <RadioButton
+            android:id="@+id/transition_slide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="Slide"/>
+
+    </RadioGroup>
+
+</RelativeLayout>
