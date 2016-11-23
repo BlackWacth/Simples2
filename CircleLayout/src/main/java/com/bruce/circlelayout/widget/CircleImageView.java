@@ -1,6 +1,7 @@
 package com.bruce.circlelayout.widget;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -8,8 +9,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Checkable;
 import android.widget.ImageView;
@@ -22,6 +26,8 @@ import com.bruce.circlelayout.R;
  */
 public class CircleImageView extends ImageView implements Checkable, View.OnClickListener{
 
+    public static final String tag = "CircleImageView";
+
     private float mAnagle = 0;
     private int mPosition = 0;
     private String mName;
@@ -32,9 +38,9 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
     private Path mPath;
     private int mWidth, mHeight;
     private Bitmap mCheckBitmap;
-    private Drawable mCheckDrawable;
-    private Rect mSrcRect, mDstRect;
-
+    private AnimatedVectorDrawable mCheckDrawable;
+    private Rect mCheckBounds;
+    private int halfCheckWidth, halfCheckHeight;
 
     public CircleImageView(Context context) {
         this(context, null);
@@ -46,7 +52,6 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
 
     public CircleImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
         init();
     }
 
@@ -59,10 +64,12 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
         mPath = new Path();
         setOnClickListener(this);
 
-        mCheckBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.check_animated_vector);
-
-        mSrcRect = new Rect(0, 0, mCheckBitmap.getWidth(), mCheckBitmap.getHeight());
-        mDstRect = new Rect();
+        mCheckDrawable = (AnimatedVectorDrawable) getResources().getDrawable(R.drawable.check_animated_vector, null);
+        Log.i(tag, "mCheckDrawable = " + mCheckDrawable);
+        mCheckBounds = mCheckDrawable.getBounds();
+        halfCheckWidth = mCheckBounds.width() / 2;
+        halfCheckHeight = mCheckBounds.height() / 2;
+        Log.i(tag, "bounds = " + mCheckBounds);
     }
 
     @Override
@@ -73,13 +80,11 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
 
         int minWidth = Math.min(mWidth, mHeight);
         int center = minWidth / 2;
-        int halfCheckWidth = mCheckBitmap.getWidth() / 2;
-        int halfCheckHeight = mCheckBitmap.getHeight() / 2;
-
-        mDstRect.left = center - halfCheckWidth;
-        mDstRect.right = center + halfCheckWidth;
-        mDstRect.top = center - halfCheckHeight;
-        mDstRect.bottom = center + halfCheckHeight;
+        mCheckBounds.left = center - halfCheckWidth;
+        mCheckBounds.right = center + halfCheckWidth;
+        mCheckBounds.top = center - halfCheckHeight;
+        mCheckBounds.bottom = center + halfCheckHeight;
+//        mCheckDrawable.setBounds(mCheckBounds);
 
         setMeasuredDimension(minWidth, minWidth);
     }
@@ -89,11 +94,12 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
         super.onDraw(canvas);
         if(isChecked) {
             onDrawChecked(canvas);
+//            mCheckDrawable.start();
         }
     }
 
     private void onDrawChecked(Canvas canvas) {
-        canvas.drawBitmap(mCheckBitmap, mSrcRect, mDstRect, mPaint);
+        mCheckDrawable.draw(canvas);
     }
 
     @Override
@@ -102,6 +108,7 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
         if(mOnCheckedChangeListener != null) {
             mOnCheckedChangeListener.onCheckedChanged(this, isChecked);
         }
+        postInvalidate();
     }
 
     @Override
@@ -158,6 +165,7 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
     @Override
     public void onClick(View v) {
         toggle();
+        Log.i(tag, "isChecked = " + isChecked);
     }
 
     public static interface OnCheckedChangeListener {
