@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AppShortcuts/AppShortcuts.iml" filepath="$PROJECT_DIR$/AppShortcuts/AppShortcuts.iml" />
       <module fileurl="file://$PROJECT_DIR$/CalculationStep/CalculationStep.iml" filepath="$PROJECT_DIR$/CalculationStep/CalculationStep.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CircleLayout/CircleLayout.iml" filepath="$PROJECT_DIR$/CircleLayout/CircleLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/CustomDrawable/CustomDrawable.iml" filepath="$PROJECT_DIR$/CustomDrawable/CustomDrawable.iml" />
       <module fileurl="file://$PROJECT_DIR$/MultiWindow/MultiWindow.iml" filepath="$PROJECT_DIR$/MultiWindow/MultiWindow.iml" />
       <module fileurl="file://$PROJECT_DIR$/Simples2.iml" filepath="$PROJECT_DIR$/Simples2.iml" />
