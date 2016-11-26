@@ -30,12 +30,15 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
 
     private float mAnagle = 0;
     private int mPosition = 0;
+    private float startX;
+    private float startY;
+    private float endX;
+    private float endY;
     private String mName;
     private Drawable mDrawable;
     private boolean isChecked = false;
     private OnCheckedChangeListener mOnCheckedChangeListener;
     private Paint mPaint;
-    private Path mPath;
     private int mWidth, mHeight;
     private Bitmap mCheckBitmap;
     private AnimatedVectorDrawable mCheckDrawable;
@@ -60,16 +63,14 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(Color.RED);
-
-        mPath = new Path();
         setOnClickListener(this);
 
         mCheckDrawable = (AnimatedVectorDrawable) getResources().getDrawable(R.drawable.check_animated_vector, null);
-        Log.i(tag, "mCheckDrawable = " + mCheckDrawable);
+//        Log.i(tag, "mCheckDrawable = " + mCheckDrawable);
         mCheckBounds = mCheckDrawable.getBounds();
         halfCheckWidth = mCheckBounds.width() / 2;
         halfCheckHeight = mCheckBounds.height() / 2;
-        Log.i(tag, "bounds = " + mCheckBounds);
+//        Log.i(tag, "bounds = " + mCheckBounds);
     }
 
     @Override
@@ -79,12 +80,13 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
         mHeight = MeasureSpec.getSize(heightMeasureSpec);
 
         int minWidth = Math.min(mWidth, mHeight);
-        int center = minWidth / 2;
+        int center = minWidth / 4;
         mCheckBounds.left = center - halfCheckWidth;
         mCheckBounds.right = center + halfCheckWidth;
         mCheckBounds.top = center - halfCheckHeight;
         mCheckBounds.bottom = center + halfCheckHeight;
-//        mCheckDrawable.setBounds(mCheckBounds);
+//        Log.i(tag, "after --> bounds = " + mCheckBounds);
+        mCheckDrawable.setBounds(mCheckBounds);
 
         setMeasuredDimension(minWidth, minWidth);
     }
@@ -92,14 +94,15 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if(isChecked) {
-            onDrawChecked(canvas);
-//            mCheckDrawable.start();
-        }
+        onDrawChecked(canvas);
     }
 
     private void onDrawChecked(Canvas canvas) {
-        mCheckDrawable.draw(canvas);
+        if(isChecked) {
+            setImageDrawable(mCheckDrawable);
+        } else {
+            setImageDrawable(null);
+        }
     }
 
     @Override
@@ -109,6 +112,9 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
             mOnCheckedChangeListener.onCheckedChanged(this, isChecked);
         }
         postInvalidate();
+        if(isChecked) {
+            mCheckDrawable.start();
+        }
     }
 
     @Override
@@ -160,6 +166,38 @@ public class CircleImageView extends ImageView implements Checkable, View.OnClic
 
     public void setDrawable(Drawable drawable) {
         mDrawable = drawable;
+    }
+
+    public float getStartX() {
+        return startX;
+    }
+
+    public void setStartX(float startX) {
+        this.startX = startX;
+    }
+
+    public float getStartY() {
+        return startY;
+    }
+
+    public void setStartY(float startY) {
+        this.startY = startY;
+    }
+
+    public float getEndX() {
+        return endX;
+    }
+
+    public void setEndX(float endX) {
+        this.endX = endX;
+    }
+
+    public float getEndY() {
+        return endY;
+    }
+
+    public void setEndY(float endY) {
+        this.endY = endY;
     }
 
     @Override

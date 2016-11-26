@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CircleLayout-W</string>
+
+    <string name="guide_title_home">desktop</string>
+    <string name="guide_title_google_now">googlenow</string>
+    <string name="guide_title_daily_tricking">dailytracking</string>
+    <string name="guide_title_fitness_tracking">fitness</string>
+    <string name="guide_title_play_music">playmusic</string>
+    <string name="guide_title_heart_rate">heartrate</string>
+    <string name="guide_title_google_map">map</string>
+    <string name="guide_title_notification">notification</string>
+    <string name="guide_title_watch_face">watchface</string>
+    <string name="guide_title_hangouts">hangouts</string>
+    <string name="guide_title_mphone">mphone</string>
+
+</resources>
