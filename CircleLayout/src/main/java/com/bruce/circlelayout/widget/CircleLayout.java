@@ -60,6 +60,7 @@ public class CircleLayout extends ViewGroup implements View.OnClickListener{
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        Log.i(tag, "onMeasure");
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
 
@@ -78,6 +79,7 @@ public class CircleLayout extends ViewGroup implements View.OnClickListener{
         if(mState == State.SHOW) {
             return ;
         }
+        Log.i(tag, "onLayout");
         mLayoutWidth = r - l;
         mLayoutHeight = b - t;
         Log.i(tag, "onLayout --> mLayoutWidth = " + mLayoutWidth);
@@ -117,13 +119,13 @@ public class CircleLayout extends ViewGroup implements View.OnClickListener{
     }
 
     private int getStartLeft() {
+        Log.i(tag, "getStartLeft");
         return mLayoutWidth / 2 - mChildWidth / 2;
-//        return 1050 / 2 - 175 / 2;
     }
 
     private int getStartTop() {
+        Log.i(tag, "getStartTop");
         return mLayoutHeight / 2 - mChildHeight / 2;
-//        return 1050 / 2 - 175 / 2;
     }
 
     public float getAngle() {
@@ -146,17 +148,19 @@ public class CircleLayout extends ViewGroup implements View.OnClickListener{
 //    }
 
     private int getEndLeft(int position, float angle){
+        Log.i(tag, "getEndLeft");
         CircleImageView child = (CircleImageView) getChildAt(position);
         return (int) (mLayoutWidth / 2 + mBixRadius * Math.cos(Math.toRadians(child.getAnagle() + angle))) - mChildWidth / 2;
     }
 
     private int getEndTop(int position, float angle){
+        Log.i(tag, "getEndTop");
         CircleImageView child = (CircleImageView) getChildAt(position);
-        Log.i(tag, "getEndTop >>>> mLayoutWidth = " + mLayoutWidth);
-        Log.i(tag, "getEndTop >>>> mBixRadius = " + mBixRadius);
-        Log.i(tag, "getEndTop >>>> mChildHeight = " + mChildHeight);
+//        Log.i(tag, "getEndTop >>>> mLayoutWidth = " + mLayoutWidth);
+//        Log.i(tag, "getEndTop >>>> mBixRadius = " + mBixRadius);
+//        Log.i(tag, "getEndTop >>>> mChildHeight = " + mChildHeight);
         int top = (int) (mLayoutWidth / 2 + mBixRadius * Math.sin(Math.toRadians(child.getAnagle() + angle))) - mChildHeight / 2;
-        Log.i(tag, "getEndTop >>>> top = " + top);
+//        Log.i(tag, "getEndTop >>>> top = " + top);
         return top;
     }
 
@@ -164,6 +168,7 @@ public class CircleLayout extends ViewGroup implements View.OnClickListener{
      * 该方法才是实现旋转的本质方法
      */
     private void chanageChildLayout() {
+        Log.i(tag, "chanageChildLayout");
         int left, top;
         final int childCount = getChildCount() - 1;
 
@@ -193,6 +198,7 @@ public class CircleLayout extends ViewGroup implements View.OnClickListener{
      * @param isShow 是否展开，标记每块的状态改变
      */
     private void translationAnimation(View view, float startX, float startY, float endX, float endY, final boolean isShow) {
+        Log.i(tag, "translationAnimation");
         final AnimatorSet set = new AnimatorSet();
         ObjectAnimator viewXAnimator = ObjectAnimator.ofFloat(view, View.X, startX, endX);
         ObjectAnimator viewYAnimator = ObjectAnimator.ofFloat(view, View.Y, startY, endY);
@@ -254,12 +260,14 @@ public class CircleLayout extends ViewGroup implements View.OnClickListener{
     }
 
     private void show() {
+        Log.i(tag, "show");
         for(int i = 0; i < getChildCount() - 1; i++) {
             translationAnimation(getChildAt(i), getStartLeft(), getStartTop(), getEndLeft(i, mAngle), getEndTop(i, mAngle), true);
         }
     }
 
     private void hide() {
+        Log.i(tag, "hide");
         for(int i = 0; i < getChildCount() - 1; i++) {
             CircleImageView child = (CircleImageView) getChildAt(i);
             child.setChecked(false);
@@ -269,6 +277,7 @@ public class CircleLayout extends ViewGroup implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        Log.i(tag, "onClick");
         if(mState == State.SHOWING) {
             return ;
         }
@@ -292,14 +301,14 @@ public class CircleLayout extends ViewGroup implements View.OnClickListener{
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mTouchStartAngle = getPositionAngle(event.getX(), event.getY());
-                Log.i(tag, "mTouchStartAngle = " + mTouchStartAngle);
+//                Log.i(tag, "mTouchStartAngle = " + mTouchStartAngle);
                 break;
 
             case MotionEvent.ACTION_MOVE:
                 float currentAngle = getPositionAngle(event.getX(), event.getY());
-                Log.i(tag, "currentAngle = " + currentAngle);
+//                Log.i(tag, "currentAngle = " + currentAngle);
                 mAngle += (mTouchStartAngle - currentAngle);
-                Log.i(tag, "mAngle = " + mAngle);
+//                Log.i(tag, "mAngle = " + mAngle);
                 chanageChildLayout();
                 mTouchStartAngle = currentAngle;
                 isRotating = true;
@@ -314,6 +323,7 @@ public class CircleLayout extends ViewGroup implements View.OnClickListener{
 
 
     private float getPositionAngle(float xTouch, float yTouch) {
+        Log.i(tag, "getPositionAngle");
         float x = xTouch - mLayoutWidth / 2f;
         float y = mLayoutHeight / 2f - yTouch;
 
@@ -337,6 +347,7 @@ public class CircleLayout extends ViewGroup implements View.OnClickListener{
      * @return
      */
     private int getPositionQuadrant(double x, double y) {
+        Log.i(tag, "getPositionQuadrant");
         if (x >= 0) {
             return y >= 0 ? 1 : 4;
         } else {
